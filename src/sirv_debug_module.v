@@ -11,7 +11,7 @@
  distributed under the License is distributed on an "AS IS" BASIS,       
  WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
  See the License for the specific language governing permissions and     
- limitations under the License.                                          
+ limitations under the License.                                         
  */                                                                      
                                                                          
                                                                          
@@ -42,6 +42,8 @@ module sirv_debug_module
   parameter HART_NUM = 1,
   parameter HART_ID_W = 1
 ) (
+
+  output  vrm_test,
 
   output  inspect_jtag_clk,
 
@@ -257,6 +259,8 @@ module sirv_debug_module
           .ASYNC_FF_LEVELS(ASYNC_FF_LEVELS)
       ) u_sirv_jtag_dtm (
                        
+        .vrm_test		   (vrm_test      ),
+
         .jtag_TDI           (jtag_TDI      ),
         .jtag_TDO           (jtag_TDO      ),
         .jtag_TCK           (jtag_TCK      ),

@@ -36,6 +36,9 @@
 `include "e203_defines.v"
 
 module e203_subsys_top(
+
+  output vrm_test,
+
   // This clock should comes from the crystal pad generated high speed clock (16MHz)
   input  hfextclk,
   output hfxoscen,// The signal to enable the crystal pad generated clock
@@ -906,6 +909,9 @@ module e203_subsys_top(
       .PC_SIZE  (`E203_PC_SIZE),
       .HART_ID_W(`E203_HART_ID_W) 
     ) u_sirv_debug_module(
+    
+	.vrm_test		(vrm_test),
+    
     .inspect_jtag_clk    (inspect_jtag_clk),
 
     .test_mode       (test_mode ),

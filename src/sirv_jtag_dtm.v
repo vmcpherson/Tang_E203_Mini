@@ -20,7 +20,10 @@
 
 module sirv_jtag_dtm (
                    
+
                                  //JTAG Interface
+
+								vrm_test,
                                  
                                  jtag_TDI,
                                  jtag_TDO,
@@ -29,6 +32,7 @@ module sirv_jtag_dtm (
                                  jtag_TRST,
                              
                                  jtag_DRV_TDO,
+
 
                                  dtm_req_valid,
                                  dtm_req_ready,
@@ -104,6 +108,9 @@ module sirv_jtag_dtm (
    input                                jtag_TCK;
    input                                jtag_TMS;
    input                                jtag_TRST;
+   
+   output reg 						   vrm_test;   
+   
 
    // To allow tri-state outside of this block.
    output reg                           jtag_DRV_TDO;
@@ -357,6 +364,12 @@ module sirv_jtag_dtm (
          jtag_DRV_TDO <= 1'b0;
       end
    end // always @ (negedge jtag_TCK or posedge jtag_TRST)
+
+   always @(negedge jtag_TCK) begin
+      vrm_test  <= stickyNonzeroRespReg; // | stickyBusyReg;
+//      vrm_test  <= 0;
+   end // always @ (negedge jtag_TCK or posedge jtag_TRST)
+
    
      sirv_gnrl_cdc_tx   
    # (

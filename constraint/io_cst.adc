@@ -35,7 +35,12 @@ set_pin_assignment {awakeup} { LOCATION = D6; }	##B25_N, D6
 ##B25P, D5
 ##===========================================
 ##GPIO
-set_pin_assignment {ck_io[0]} { LOCATION = A3; }  		##B24_P, A3
+
+# VRM
+# set_pin_assignment {ck_io[0]} { LOCATION = A3; }  		##B24_P, A3
+set_pin_assignment {vrm_test_pin} { LOCATION = A3; }  		##B24_P, A3
+
+
 ##GPIO1, GPIO2, GPIO3 is same as rgb led
 ##so set them in half-pad
 set_pin_assignment {ck_io[1]} { LOCATION = N3; }  		##R22_N, N3

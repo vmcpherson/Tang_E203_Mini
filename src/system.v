@@ -11,6 +11,8 @@ module system
   output wire qspi_sck,
   inout wire [3:0] qspi_dq,
 
+  output wire vrm_test_pin,
+
   // JD (used for JTAG connection)
   inout wire jd_0, // TDO
   //inout wire jd_1, // TRST_n
@@ -997,6 +999,9 @@ module system
   assign dut_io_pads_jtag_TDI_i_ival = iobuf_jtag_TDI_o;
   //PULLUP pullup_TDI (.O(jd_4));
 
+  wire vrm_test;
+  assign vrm_test_pin = vrm_test;
+
   wire iobuf_jtag_TDO_o;
   IOBUF
   //#(
@@ -1089,6 +1094,8 @@ module system
 
     .lfextclk(slowclk),
     .lfxoscen(),
+    
+    	.vrm_test(vrm_test),
 
        // Note: this is the real SoC top AON domain slow clock
     .io_pads_jtag_TCK_i_ival(dut_io_pads_jtag_TCK_i_ival),

@@ -18,6 +18,8 @@
                                                                          
 module e203_soc_top(
 
+  output vrm_test,
+
     // This clock should comes from the crystal pad generated high speed clock (16MHz)
   input  hfextclk,
   output hfxoscen,// The signal to enable the crystal pad generated clock
@@ -299,8 +301,7 @@ module e203_soc_top(
  e203_subsys_top u_e203_subsys_top(
     .core_mhartid      (1'b0),
   
-
-
+	.vrm_test				(vrm_test),
 
   `ifdef E203_HAS_ITCM_EXTITF //{
     .ext2itcm_icb_cmd_valid  (1'b0),
